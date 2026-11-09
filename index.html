@@ -23,8 +23,9 @@
 *{box-sizing:border-box}
 html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font-family:var(--body);font-weight:300;font-size:17px;line-height:1.65;color:var(--ink);
-  background:radial-gradient(1100px 600px at 50% -10%,#4A2363 0%,transparent 60%),radial-gradient(900px 500px at 100% 100%,#3A1A4F 0%,transparent 60%),var(--bg);background-attachment:fixed;
+  background:var(--bg);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(1100px 600px at 50% -10%,#4A2363 0%,transparent 60%),radial-gradient(900px 500px at 100% 100%,#3A1A4F 0%,transparent 60%)}
 img{max-width:100%;height:auto;display:block}
 .wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:64px}
 h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;text-wrap:balance;margin:0}
@@ -76,6 +77,23 @@ button[disabled]{opacity:.6;cursor:wait;transform:none}
 .about{display:flex;flex-direction:column;gap:14px;color:var(--muted)}
 .about strong{color:var(--ink)}
 footer{color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line);padding-top:24px}
+header .hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
+.duo{display:flex;flex-direction:column;gap:64px}
+@media (min-width:960px){
+  body{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}
+  .wrap{max-width:1160px;gap:88px}
+  header{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center;padding-top:48px}
+  header h1{font-size:clamp(40px,3.6vw,52px)}
+  header .lead{font-size:18px}
+  header .card{align-self:center}
+  section > p{max-width:68ch}
+  .clairs{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+  .clair{padding:22px 18px}
+  .duo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:72px;align-items:start}
+  .final{align-items:center}
+  .final .card{width:100%;max-width:760px}
+}
+@media (max-width:520px){.clairs{grid-template-columns:1fr 1fr}.clair:last-child{grid-column:1/-1}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -83,10 +101,12 @@ footer{color:var(--muted);font-size:14px;text-align:center;border-top:1px solid 
 <div class="wrap">
 
   <header>
+   <div class="hero-text">
     <img class="hero" src="hero.jpg" alt="What's Your Intuitive Language? Gold icons for seeing, hearing, feeling, knowing, and smelling on deep purple." width="1400" height="788">
     <p class="eyebrow">A free quiz from Skyler · Soul Journey Sky</p>
     <h1>You've heard of love languages. <em>Your intuition has one too.</em></h1>
     <p class="lead">Ever had a gut feeling you couldn't explain, a song pop into your head at just the right moment, or simply known something before it happened? That's your intuition, and it has a favorite way of talking to you.</p>
+   </div>
 
     <div class="card" id="signup-top">
       <h3>Find your intuitive language</h3>
@@ -116,6 +136,7 @@ footer{color:var(--muted);font-size:14px;text-align:center;border-top:1px solid 
     </div>
   </section>
 
+  <div class="duo">
   <section aria-labelledby="gets-h">
     <h2 id="gets-h">What you'll get</h2>
     <ul class="gets">
@@ -135,8 +156,9 @@ footer{color:var(--muted);font-size:14px;text-align:center;border-top:1px solid 
       <p>Knowing your intuitive language is the first step. Once you know how your intuition talks to you, you can start trusting it.</p>
     </div>
   </section>
+  </div>
 
-  <section aria-labelledby="final-h">
+  <section class="final" aria-labelledby="final-h">
     <div class="card">
       <h2 id="final-h">Ready to meet your intuition?</h2>
       <p class="small">It takes about five minutes, and it's free.</p>
